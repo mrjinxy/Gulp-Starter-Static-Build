@@ -1,4 +1,4 @@
-## GULP STARTER DEV
+## GULP STARTER STATIC BUILD
 A starter folder structure to get up and runnnig building a website.
 Download and navigate to the folder.
 Use the command `npm install` to install all node modules
