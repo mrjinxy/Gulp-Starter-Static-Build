@@ -1,0 +1,117 @@
+/*--------------------------------------------------------------
+THEME
+--------------------------------------------------------------*/
+/// Main theme color for site
+/// @access public
+/// @type color
+$primary-color:             #E74C3C;
+/// Secondary theme color for site
+/// @access public
+/// @type color
+$secondary-color:           #72a9a3;
+
+/// Base gray color
+/// @access public
+/// @type color
+$gray-base:                 #000;
+$gray-darker:               lighten($gray-base, 13.5%);
+$gray-dark:                 lighten($gray-base, 20%);
+$gray:                      lighten($gray-base, 33.5%);
+$gray-light:                lighten($gray-base, 46.7%);
+$gray-lighter:              lighten($gray-base, 97%);
+
+/// Body Backgound color
+/// @access public
+/// @type color
+$body-bg:                  #ffffff;
+/// Text color
+/// @access public
+/// @type color
+$text-color:                #888888;
+/// Link color
+/// @access public
+/// @type color
+$link-color:                $primary-color;
+/// Link hover color
+/// @access public
+/// @type color
+$link-hover-color:          darken($primary-color,10%);
+
+// ==========================================================
+// FONT FAMILY
+// ==========================================================
+/*--------------------------------------------------------------
+TYPOGRAPHY
+--------------------------------------------------------------*/
+/// Default sans serif font
+/// @access public
+/// @type font
+$font-family-sans-serif:    'Open Sans', sans-serif;
+/// Default serif font
+/// @access public
+/// @type font
+$font-family-serif:         "Lora", Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:     Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:          $font-family-sans-serif;
+$font-family-heading:       $font-family-sans-serif;
+$font-family-hweight:       200;
+
+// ==========================================================
+// FONT SIZE
+// ==========================================================
+/// Base font size
+/// @access public
+/// @type number
+$font-size-base:            14px;
+
+$font-size-large:           round(($font-size-base * 1.25));
+$font-size-small:           round(($font-size-base * 0.75));
+
+/// Base h1 size
+/// @access public
+/// @type number
+$font-size-h1:              round(($font-size-base * 2.75));
+/// Base h2 size
+/// @access public
+/// @type number
+$font-size-h2:              round(($font-size-base * 2.50));
+/// Base h3 size
+/// @access public
+/// @type number
+$font-size-h3:              round(($font-size-base * 2.25));
+/// Base h4 size
+/// @access public
+/// @type number
+$font-size-h4:              round(($font-size-base * 2.00));
+/// Base h5 size
+/// @access public
+/// @type number
+$font-size-h5:              round(($font-size-base * 1.75));
+/// Base h6 size
+/// @access public
+/// @type number
+$font-size-h6:              round(($font-size-base * 1.50));
+// ==========================================================
+// SPACEMENT
+// ==========================================================
+/// Default spacing size
+/// @access public
+/// @type number
+$spacing-base:              20px;
+$spacing-base-lg:           40px;
+// ==========================================================
+// BREAKPOINTS
+// ==========================================================
+/// Breakpoints for media queries
+/// @access public
+/// @type number
+$breakpoints: (
+    "phone":                400px,
+    "phone-wide":           480px,
+    "phablet":              560px,
+    "tablet-small":         640px,
+    "tablet":               768px,
+    "tablet-wide":          1024px,
+    "desktop":              1248px,
+    "desktop-wide":         1440px
+);

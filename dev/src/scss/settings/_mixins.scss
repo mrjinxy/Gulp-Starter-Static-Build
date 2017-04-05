@@ -1,0 +1,793 @@
+// _mixins.scss
+/* Mixins included */
+// HELPER MIXINS
+
+/// Use to make css calculations
+/// @access public
+@mixin calc($property, $expression){ 
+	#{$property}: -webkit-calc(#{$expression}); 
+	#{$property}: -moz-calc(#{$expression}); 
+	#{$property}: -ms-calc(#{$expression}); 
+	#{$property}: -o-calc(#{$expression}); 
+	#{$property}: calc(#{$expression}); 
+}
+
+/// Pseudo class starter
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include pseudo(block, absolute,'')
+///   }
+/// @param {Display} $display - Display property e.g. block / inline-block etc.
+/// @param {Position} $pos - Position property e.g. absolute / relative etc.
+/// @param {Content} $content - What content should the pseudo element be e.g. font-icon etc.
+/// @example css - Result
+///   .foo {
+///      content: '';
+///      display: block;
+///      position: absolute;
+///   }
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+
+// ==========================================================
+//>> ANIMATIONS MIXINS
+// ==========================================================
+/// Animation
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include anim(300ms, ease-in)
+///   }
+/// @param {Speed} $speed - Speed Of the animation e.g. 300ms (needs ms after the value)
+/// @param {Ease} $ease - What kind of ease the animation takes - linear / ease-in etc.
+/// @example css - Result
+///   .foo {
+///    -webkit-transition: 300ms ease-in;
+///    -moz-transition:  300ms ease-in;
+///    -o-transition: 300ms ease-in;
+///    -ms-transition: 300ms ease-in;
+///    transition: 300ms ease-in;
+///   }
+@mixin anim($speed, $ease){
+	-webkit-transition: $speed $ease;
+	-moz-transition:  $speed $ease;
+	-o-transition: $speed $ease;
+	-ms-transition: $speed $ease;
+	transition: $speed $ease;
+}
+
+
+// ==========================================================
+//>> POSITION MIXINS
+// ==========================================================
+/// Translate position
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include translate(-50%, -50%)
+///   }
+/// @param {TranslateX} $translateX - transform value on the x-axis
+/// @param {TranslateY} $translateY - transform value on the y-axis.
+/// @example css - Result
+///   .foo {
+///    -webkit-transform: translate(-50%, -50%);
+///    -moz-transform: translate(-50%, -50%);
+///    -ms-transform: translate(-50%, -50%);
+///    -o-transform: translate(-50%, -50%);
+///    transform: translate(-50%, -50%); 
+///   }
+@mixin translate($translateX, $translateY){
+	-webkit-transform: translate($translateX, $translateY);
+	-moz-transform: translate($translateX, $translateY);
+	-ms-transform: translate($translateX, $translateY);
+	-o-transform: translate($translateX, $translateY);
+	transform: translate($translateX, $translateY);	
+}
+
+/// Center elememnts horizontally and vertically
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include absolute-centered;
+///   }
+/// @example css - Result
+///   .foo {
+///    position: absolute;
+///    top: 50%;
+///    left: 50%;
+///    -webkit-transform: translate(-50%, -50%);
+///    -moz-transform: translate(-50%, -50%);
+///    -ms-transform: translate(-50%, -50%);
+///    -o-transform: translate(-50%, -50%);
+///    transform: translate(-50%, -50%); 
+///   }
+@mixin absolute-centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+}
+
+/// Equal margins left and right
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include margin-auto;
+///   }
+/// @example css - Result
+///   .foo {
+///     margin-left:auto;
+///     margin-right:auto;
+///   }
+@mixin margin-auto{
+	margin: {
+		left: auto;
+		right: auto;
+	}
+}
+// ==========================================================
+//>> STYLES MIXINS
+// ==========================================================
+/// Box shadow
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include box-shadow(1px,1px,2px,2px,#000);
+///   }
+/// @param {Horizontal} $horizontal - horizontal value
+/// @param {Vertical} $vertical - vertical value
+/// @param {Blur} $blur - amount of blur needed.
+/// @param {Spread} $spread - amount of spread needed.
+/// @param {Color} $color - color of shadow (can be RGBA).
+/// @example css - Result
+///   .foo {
+///    -webkit-box-shadow: 1px 1px 2px 2px #000;
+///    box-shadow: 1px 1px 2px 2px #000;
+///   }
+@mixin box-shadow($horizontal,$vertical,$blur,$spread,$color){
+	-webkit-box-shadow: $horizontal $vertical $blur $spread $color;
+	box-shadow: $horizontal $vertical $blur $spread $color;
+}
+
+/// Border Radius
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include box-shadow(1px,1px,2px,2px,#000);
+///   }
+/// @param {Radius} $radius - radius amount on border
+/// @example css - Result
+///   .foo {
+///    -webkit-box-shadow: 1px 1px 2px 2px #000;
+///    box-shadow: 1px 1px 2px 2px #000;
+///   }
+@mixin border-radius($radius){
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+	background-clip: padding-box;
+}
+
+
+/// Background cover
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include background-cover(center, center);
+///   }
+/// @param {PositionX} $positionX - position on the x-axis e.g. can be number or position - defaults to 'center'.
+/// @param {PositionY} $positionY - position on the y-axis e.g. can be number or position - defaults to 'center'.
+/// @example css - Result
+///   .foo {
+///    -webkit-background-size: cover;
+///    -moz-background-size: cover;
+///    -o-background-size: cover;
+///    background-size: cover;
+///    background-position: center center;
+///   }
+@mixin background-cover($positionX: center, $positionY: center){
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: $positionX $positionY;
+}
+// ==========================================================
+//>> TEXT MIXINS
+// ==========================================================
+// Font settings mixin
+@mixin font($family: false, $size: false, $color: false, $weight: false,  $line-height: false, $letter-spacing: false, $text-transform: false) {
+    @if $family { font-family: $family; }
+    @if $size { font-size: $size; }
+    @if $color { color: $color; }
+    @if $weight { font-weight: $weight; }
+    @if $line-height { line-height: $line-height; }
+    @if $letter-spacing { letter-spacing: $letter-spacing; }
+    @if $text-transform { text-transform: $text-transform; }
+}
+
+/// Single line truncate
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include truncate(100%);
+///   }
+/// @param {Width} $width - max-width of element to be truncated.
+/// @example css - Result
+///   .foo {
+///     max-width: 100%;
+///     white-space: nowrap;
+///     overflow: hidden;
+///     text-overflow: ellipsis;
+///   }
+@mixin truncate($width) {
+    max-width: $width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/// Multi-line truncate
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include multiline-truncate(14px, 1.5, 3);
+///   }
+/// @param {Font-size} $font-size - font size.
+/// @param {Line-height} $line-height - line height.
+/// @param {Lines to show} $lines-to-shoe - how many line to truncate at.
+/// @example css - Result
+///   .foo {
+///    display: block;
+///    display: -webkit-box;
+///    max-height: 63px; - (font-size-14 * line-height-1.5 * line-to-truncate-3)
+///    font-size: 15px;
+///    line-height: 17px;
+///    -webkit-line-clamp: 4;
+///    -webkit-box-orient: vertical;
+///    overflow: hidden;
+///    text-overflow: ellipsis;
+///   }
+@mixin multiline-truncate($font-size, $line-height,$lines-to-show){
+	display: block;
+	display: -webkit-box;
+	max-height: $font-size*$line-height*$lines-to-show;
+	font-size: $font-size;
+	line-height: $line-height;
+	-webkit-line-clamp: $lines-to-show;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+// Placeholder starter mixin
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+// =========================================================
+//>> GRADIENTS MIXINS
+// ==========================================================
+// Full gradient mixin
+@mixin gradient($gradient-type, $color-start, $opacity-start, $color-end, $opacity-end){
+	@if $gradient-type == vertical{
+       background: -moz-linear-gradient(top, rgba($color-start,$opacity-start) 0%, rgba($color-end,$opacity-end) 100%);
+	   background: -webkit-linear-gradient(top, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+	   background: linear-gradient(to bottom, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+	   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-start}', endColorstr='#{$color-end}',GradientType=0 );
+    }
+    @if $gradient-type == horizontal{
+       background: -moz-linear-gradient(left, rgba($color-start,$opacity-start) 0%, rgba($color-end,$opacity-end) 100%);
+       background: -webkit-linear-gradient(left, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       background: linear-gradient(to right, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-start}', endColorstr='#{$color-end}',GradientType=1 );
+    }
+    @if $gradient-type == diagonaltobottom{
+       background: -moz-linear-gradient(-45deg, rgba($color-start,$opacity-start) 0%, rgba($color-end,$opacity-end) 100%);
+       background: -webkit-linear-gradient(-45deg, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       background: linear-gradient(135deg, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-start}', endColorstr='#{$color-end}',GradientType=1 );
+    }
+    @if $gradient-type == diagonaltotop{
+       background: -moz-linear-gradient(45deg, rgba($color-start,$opacity-start) 0%, rgba($color-end,$opacity-end) 100%);
+       background: -webkit-linear-gradient(45deg, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       background: linear-gradient(45deg, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-start}', endColorstr='#{$color-end}',GradientType=1 );
+    }
+    @if $gradient-type == radial{
+       background: -moz-linear-gradient(center, ellipse cover, rgba($color-start,$opacity-start) 0%, rgba($color-end,$opacity-end) 100%);
+       background: -webkit-linear-gradient(center, ellipse cover, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       background: linear-gradient(ellipse at center, rgba($color-start,$opacity-start) 0%,rgba($color-end,$opacity-end) 100%);
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-start}', endColorstr='#{$color-end}',GradientType=1 );
+    }
+}
+
+
+// ==========================================================
+//>> MISC
+// ==========================================================
+
+/// Triangle Generator
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include css-triangle(#000, top, 10px, absolute);
+///   }
+/// @param {Color} $color - triangle color.
+/// @param {Direction} $direction - direction of arrow (top, bottom, left, right).
+/// @param {Size} $size - size of triangle.
+/// @param {Position} $position - absolute, relative etc.
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+    @if $round {
+        border-radius: 3px;
+    }
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    } @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    } @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    } @else if  $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+
+
+/// Gradient @include gradient-ver-four-stop(red, 1, , blue, .5, blue, .7, blue, 0);
+@mixin gradient-ver-four-stop($color1,$opacity1,$color2,$opacity2,$color3,$opacity3,$color4,$opacity4) {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#272727+0,272727+51,272727+100&0+0,0.12+51,1+100 */
+background: -moz-linear-gradient(top,  rgba($color1,$opacity1) 0%,rgba($color2,$opacity2) 50%, rgba($color3,$opacity3) 70%, rgba($color4,$opacity4) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba($color1,$opacity1) 0%,rgba($color2,$opacity2) 50%,rgba($color3,$opacity3) 70%,rgba($color4,$opacity4) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba($color1,$opacity1) 0%,rgba($color2,$opacity2) 50%,rgba($color3,$opacity3) 70%,rgba($color4,$opacity4) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+/// Gradient @include gradient(red, 1, blue, .5);
+@mixin gradient-ver($color1,$opacity1,$color2,$opacity2) {
+    background: rgba($color1,0);
+    background: -moz-linear-gradient(top, rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba($color1,$opacity1)), color-stop(100%, rgba($color2,$opacity2)));
+    background: -webkit-linear-gradient(top, rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%);
+    background: -o-linear-gradient(top, rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%);
+    background: -ms-linear-gradient(top, rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%);
+    background: linear-gradient(to bottom, rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%);
+
+}
+@mixin gradient-hor($color1,$opacity1,$color2,$opacity2) {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+50,000000+50,ff0000+51,ff0000+100 */
+background: $color1; /* Old browsers */
+background: -moz-linear-gradient(left,  $color1 0%, $color1 50%, $color1 50%, $color2 51%, $color2 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  $color1 0%,$color1 50%,$color1 50%,$color2 51%,$color2 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  $color1 0%,$color1 50%,$color1 50%,$color2 51%,$color2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+@mixin gradient-horizontal($color1,$opacity1,$color2,$opacity2) {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
+background: -moz-linear-gradient(left,  rgba($color1,$opacity1) 0%, rgba($color2,$opacity2) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba($color1,$opacity1) 0%,rgba($color2,$opacity2) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba($color1,$opacity1) 0%,rgba($color2,$opacity2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+/// Fullscreen Overlay
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include overlay(rgba(#000, .7));
+///   }
+/// @param {Color} $color - Element's color(can be rgba)
+/// @example css - Result
+///   .foo {
+///    position:absolute;
+///    top:0;
+///    left: 0;
+///    right: 0;
+///    bottom: 0;
+///    background-color:rgab(0,0,0,.7);
+///   }
+@mixin overlay($color){
+    position:absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:$color;
+}
+
+/// Centers item both horizontally and vertically
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include center-both();
+///   }
+/// @example css - Result
+///   .foo{}
+///     position: absolute;
+///     top: 50%;
+///     left: 50%;
+///     -webkit-transform: translate(-50%, -50%);
+///     transform: translate(-50%, -50%);
+///   }
+@mixin center-both {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/// Vertically centers block elements with known height.
+/// @access public
+/// @param {Length} $height - Element's height
+/// @example scss - Usage
+///   .foo {
+///     @include center-h(42px);
+///   }
+/// @param {Height} $height - height of element.
+/// @example css - Result
+///   .foo {
+///     position: absolute;
+///     top: 50%;
+///     height: 42px;
+///     margin-top: -21px;
+///   }
+@mixin center-h($height) {
+    position: absolute;
+    top: 50%;
+    height: $height;
+    margin-top: -($height / 2);
+}
+
+/// Vertically centers block elements with unknown height.
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include center-h--unk;
+///   }
+/// @example css - Result
+///   .foo {
+///     position: relative;
+///     top: 50%;
+///     -webkit-transform: translateY(-50%);
+///     -ms-transform: translateY(-50%);
+///     transform: translateY(-50%);
+///   }
+@mixin center-h--unk {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+/// Arrows for owl carousel.
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include arrow(25px, 25px, #000, -10px, -10px);
+///   }
+/// @param {Width} $width - arrow width
+/// @param {Height} $height - arrow height
+/// @param {Color} $color - arrow color(can be rgba)
+/// @param {Next Position} $next-position - position of the next arrow
+/// @param {Previous Position} $prev-position - position of the previous arrow
+@mixin arrow($width, $height, $color, $next-position, $prev-position){
+        display: inline-block;
+        position: absolute;
+        width: $width;
+        height: $height;
+        background: transparent;
+        text-indent: -9999px;
+        border-top: 2px solid $color;
+        border-left: 2px solid $color;
+        transition: all .3s ease-in-out;
+        text-decoration: none;
+        color: transparent;
+        padding: 0 !important;
+        &:hover {
+            border-color: #666;
+        }
+        &:before {
+            display: block;
+            height: 200%;
+            width: 200%;
+            margin-left: -50%;
+            margin-top: -50%;
+            content: "";
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        &.prev {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            left: $prev-position;
+            bottom: 50%;
+        }
+        &.next {
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+            right: $next-position;
+            bottom: 50%;
+        }
+
+}
+/// Arrows for owl carousel inside block.
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include arrow-in-block(25px, 25px, #000, -10px, -10px);
+///   }
+/// @param {Width} $width - arrow width
+/// @param {Height} $height - arrow height
+/// @param {Color} $color - arrow color(can be rgba)
+/// @param {Next Position} $next-position - position of the next arrow
+/// @param {Previous Position} $prev-position - position of the previous arrow
+@mixin arrow-in-block($width, $height, $color, $next-position, $prev-position){
+        display: inline-block;
+        position: absolute;
+        width: $width;
+        height: $height;
+        background: transparent;
+        text-indent: -9999px;
+        border-top: 2px solid $color;
+        border-left: 2px solid $color;
+        transition: all .3s ease-in-out;
+        text-decoration: none;
+        color: transparent;
+        padding: !important;
+        &:hover {
+            border-color: #acacac;
+        }
+        &:before {
+            display: block;
+            height: 200%;
+            width: 200%;
+            margin-left: -50%;
+            margin-top: -50%;
+            content: "";
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        &.prev {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            left: $prev-position;
+                bottom: 22px;
+        }
+        &.next {
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+            right: $next-position;
+                bottom: 22px;
+        }
+
+}
+
+
+/// Backface visibility.
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include backface-visibility;
+///   }
+/// @example css - Result
+///   .foo {
+///        -webkit-backface-visibility: hidden;
+///        -moz-backface-visibility: hidden;
+///        backface-visibility: hidden;
+///   }
+@mixin backface-visibility{
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+}
+
+@mixin animated-hamburger($color, $breakpoint){
+                    display: none;
+                    @media (max-width: $breakpoint) {
+                        display: block;
+                        font-size: 32px;
+                        margin-top: 14px;
+                        text-align: center;
+                        margin-bottom: 10px;
+                        height:30px;
+                        cursor:pointer;
+                        .btn-inner{
+                            position: absolute;
+                            -webkit-transform: translate(-50%, -50%);
+                            -ms-transform: translate(-50%, -50%);
+                            transform: translate(-50%, -50%);
+                            padding: 20px;
+                            cursor: pointer;
+                            width:40px;
+                            left: 50%;
+                            margin-left: -15px;
+                            -webkit-transition: 400ms;
+                            transition: 400ms;
+                            top: 32px;
+                            &:hover { border-color: #555; }
+                            span {
+                                position: relative;
+                                top: 4px;
+                                display: block;
+                                width: 30px;
+                                height: 3px;
+                                margin-bottom: 5px;
+                                background: $color;
+                                -webkit-transition: 300ms ease-in-out;
+                                transition: 300ms ease-in-out;
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+
+                        .btn-inner.open {
+                            filter: alpha(opacity=0);
+                            span {
+                                filter: alpha(opacity=0);
+                                background: $color;
+                                &:nth-child(2) {
+                                    opacity: 0;
+                                    filter: alpha(opacity=0);
+                                }
+                                &:first-child {
+                                    -webkit-transform: rotate(45deg);
+                                    -ms-transform: rotate(45deg);
+                                    transform: rotate(45deg);
+                                    top: 11px;
+                                }
+                                &:last-child {
+                                    -webkit-transform: rotate(-45deg);
+                                    -ms-transform: rotate(-45deg);
+                                    transform: rotate(-45deg);
+                                    top: -4px;
+                                }
+                            }
+                        }
+                    }
+                    i{
+                        cursor:pointer;
+                        color: $color;
+                    }   
+                } 
+
+
+@mixin animated-hamburger-inline($color,$breakpoint){
+    display: none;
+    @media (max-width: $breakpoint) {
+        display: block;
+        font-size: 32px;
+        margin-top: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+        height:30px;
+        cursor:pointer;
+        .btn-inner{
+            padding: 20px;
+            cursor: pointer;
+            width:40px;
+            -webkit-transition: 400ms;
+            transition: 400ms;
+            &:hover { border-color: #555; }
+            span {
+                position: relative;
+                top: -1px;
+                display: block;
+                width: 35px;
+                height: 3px;
+                margin-bottom: 5px;
+                background: $color;
+                -webkit-transition: 300ms ease-in-out;
+                transition: 300ms ease-in-out;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .btn-inner.open {
+            filter: alpha(opacity=0);
+            span {
+                filter: alpha(opacity=0);
+                background: $color;
+                &:nth-child(2) {
+                    opacity: 0;
+                    filter: alpha(opacity=0);
+                }
+                &:first-child {
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                    top: 11px;
+                }
+                &:nth-child(3) {
+                    -webkit-transform: rotate(-45deg);
+                    -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+                    top: -4px;
+                }
+            }
+        }
+    }
+    i{
+        cursor:pointer;
+        color: $color;
+    }   
+}
+
+
+@mixin animated-hamburger-mobile($color, $breakpoint){
+    position: relative;
+    cursor:pointer;
+    display: none;
+    @media (max-width: $breakpoint){
+        display: inline-block;
+    }
+    .btn-inner{
+        -webkit-transition: 400ms;
+        transition: 400ms;
+        margin-bottom: 5px;
+        span {
+            position: relative;
+            top: 4px;
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin-bottom: 5px;
+            background: $color;
+            -webkit-transition: 300ms ease-in-out;
+            transition: 300ms ease-in-out;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .btn-inner.open {
+        filter: alpha(opacity=0);
+        span {
+            filter: alpha(opacity=0);
+            background: $color;
+            &:nth-child(2) {
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
+            &:first-child {
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                top: 11px;
+            }
+            &:last-child {
+                -webkit-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+                top: -5px;
+            }
+        }
+    }
+}
+

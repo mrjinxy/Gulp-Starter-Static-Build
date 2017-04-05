@@ -1,0 +1,109 @@
+// _helpers.scss
+/* ==========================================================
+>> SPACEMENTS
+========================================================== */ 
+.full-width{
+	width:100%;
+}
+.no-padding{
+	padding:0px !important;
+}
+.no-padding-right{
+	padding-right:0px !important;
+}
+.no-padding-left{
+	padding-left:0px !important;
+}
+.row{
+	margin: 0px !important;
+}
+
+/*--------------------------------------------------------------
+LARGE DEVICES
+--------------------------------------------------------------*/
+@media (max-width: 1200px) {
+	.no-padding-lg{
+		padding:0;
+	}
+	.padding-lg{
+		padding:15px;
+	}
+	.txt-center-lg{
+		text-align: center;
+	}
+	.pull-none-lg{
+		float: none !important;
+	}
+	.block-lg{
+		display: block !important;
+	}
+}
+/*--------------------------------------------------------------
+MEDIUM DEVICES
+--------------------------------------------------------------*/
+@media (max-width: 992px) {
+	.no-padding-md{
+		padding:0;
+	}
+	.padding-md{
+		padding:15px;
+	}
+	.txt-center-md{
+		text-align: center;
+	}
+	.pull-none-md{
+		float: none !important;
+	}
+	.block-md{
+		display: block !important;
+	}
+}
+
+/*--------------------------------------------------------------
+SMALL DEVICES
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+	.hidden-xs{
+		display: none !important;
+	}
+	.visible-xs{
+		display: block !important;
+	}
+	.no-padding-sm{
+		padding:0;
+	}
+	.padding-sm{
+		padding:15px;
+	}
+	.txt-center-sm{
+		text-align: center !important;
+	}
+	.pull-none-sm{
+		float: none !important;
+	}
+	.block-sm{
+		display: block !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.no-padding-xs{
+		padding:0;
+	}
+	.padding-xs{
+		padding:15px;
+	}
+	.txt-center-xs{
+		text-align: center;
+	}
+	.pull-none-xs{
+		float: none !important;
+	}
+	.hidden-xxs{
+		display: none !important;
+	}
+	.block-xs{
+		display: block !important;
+	}
+}
+

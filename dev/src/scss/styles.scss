@@ -1,0 +1,81 @@
+/*!
+ __   __  ___  _______  ___   _         _______  ______    _______  ___  ___      ___     __   __ 
+|  |_|  ||   ||       ||   | | |       |       ||    _ |  |       ||   ||   |    |   |   |  | |  |
+|       ||   ||       ||   |_| |       |   _   ||   | ||  |    ___||   ||   |    |   |   |  |_|  |
+|       ||   ||       ||      _|       |  | |  ||   |_||_ |   |___ |   ||   |    |   |   |       |
+|       ||   ||      _||     |_        |  |_|  ||    __  ||    ___||   ||   |___ |   |___|_     _|
+| ||_|| ||   ||     |_ |    _  |       |       ||   |  | ||   |___ |   ||       ||       | |   |  
+|_|   |_||___||_______||___| |_|       |_______||___|  |_||_______||___||_______||_______| |___|                                                                     
+ 
+ * Site Name: 
+ * Site URL: 
+ * Author: 
+ */
+
+/* ==========================================================
+>> CONTENTS
+=============================================================
+1. SETTINGS
+	- Variables
+	- Mixins
+2. PRESETS
+	- Bootstrap v3.3.7 (Grids, Tables and Responsive utilities)
+	- Reset
+3. FONTS
+	- Basic Arrows
+	- Google Font Open Sans
+	- Font Awesome v.4.7.0
+	- Material Design Iconic Font v.2.2.0
+4. PLUGINS
+	- Animate CSS v.3.5.1
+	- Superslides
+	- Tooltip
+	- Owl Carousel v2.2.1
+	- Malihu Custom Scrollbar v.3.1.5
+	- Light Gallery v1.3.9
+5. BASICS
+	- Buttons
+	- Helpers
+6. MODULES
+	- Module
+=============================================================
+
+========================================================== */
+
+/* ==========================================================
+>> 1. SETTINGS
+========================================================== */
+@import "settings/_variables.scss";
+@import "settings/_mixins.scss";
+/* ==========================================================
+>> 2. PRESETS
+========================================================== */
+@import "presets/_bootstrap.scss";
+@import "presets/_reset.scss";
+/* ==========================================================
+>> 3. FONTS
+========================================================== */
+@import "fonts/_basicarrows.scss";
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
+@import "http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css";
+/* ==========================================================
+>> 4. PLUGINS
+========================================================== */
+@import "plugins/_animate.scss";
+@import "plugins/_superslides.scss";
+@import "plugins/_tooltip.scss";
+@import "plugins/_owlcarousel.scss";
+@import "plugins/_mcustomscrollbar.scss";
+@import "plugins/_lightgallery.scss";
+/* ==========================================================
+>> 5. BASICS
+========================================================== */
+@import "base/_global.scss";
+@import "base/_helpers.scss";
+/* ==========================================================
+>> 6. MODULES
+========================================================== */
+@import "modules/_module.scss";
+
+
