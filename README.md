@@ -1,9 +1,9 @@
 ## GULP STARTER DEV
 A starter folder structure to get up and runnnig building a website.
-Using Gulp as our task runner we have three different Gulp Tasks.
 Download and navigate to the folder.
 Use the command `npm install` to install all node modules
 
+We have two different Gulp command we can use here.
 ### Gulp
 Usage -  `gulp` while in the folder
 This is used for when we are in development mode.
@@ -12,12 +12,6 @@ It does a couple of tasks to help us :
 * It will watch all our files and update the localhost when anything is changed
 * It will compile our sass and watch for errors
 * While working in any Js file it will lint our code for warnings or errors
-
-
-### Gulp Build
-Usage -  `gulp build` while in the folder
-This is used when developement is finished and the project and all its assets are to be minified and sent to the `dist` folder
-
 
 ### Gulp Sassdoc
 Usage -  `gulp sassdoc` while in the folder
@@ -35,6 +29,8 @@ DEV FOLDER
 	|-src/
 		|-css
 			|-maps #Sass source maps
+			|-fonts #All fonts used for plugins
+			|-img   #All images used for plugins
 			|--styles.css #Compiled Css file
 		|-fonts
 			|-all fonts inside this folder
@@ -63,18 +59,6 @@ DEV FOLDER
 				|-_mixins.scss
 				|-_variables.scss
 			|--styles.scss  #Main SCSS file which calls all the other files
-	|--index.html
-
-DIST FOLDER
-	|-src
-		|-css
-			|-styles.min.css # outputted and minified CSS file
-		|-fonts
-			|-outputted fonts inside this folder
-		|-img
-			|-all images in this folder
-		|-js
-				|-main.min.js #outputted and minified JS file
 	|--index.html
 
 DOCS FOLDER - Sassdoc folder
